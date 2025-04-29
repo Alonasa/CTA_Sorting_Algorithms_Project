@@ -15,15 +15,36 @@ class CTA {
         String[] algos = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Quick Sort", "Counting Sort"};
         
         //Generate array of random integers to perform algorithm
-        int [] array = randomNumbersArrayGenerator(-(sizes[sizes.length - 1]), sizes[sizes.length - 1], sizes[0]);
+        int [] array = randomNumbersArrayGenerator(-(sizes[sizes.length - 1]), sizes[sizes.length - 1], sizes[7]);
         
         System.out.println(Arrays.toString(array));
-        bubbleSort(array);
-        System.out.println(Arrays.toString(array));
+        System.out.println(algorithmBenchmark(array, "Bubble Sort"));
+       
 		System.out.println("Hello Algorithms");
 	}
 	
 	
+	
+	
+	public static double algorithmBenchmark(int[] arr, String algorithm) {
+		int[] clonned = copyArr(arr);
+		long startTime = System.nanoTime();
+		switch(algorithm) {
+			case "Bubble Sort" -> bubbleSort(clonned);
+		}
+		long endTime = System.nanoTime();
+		double timeElapsed = (endTime - startTime) / 1000000.0;
+		System.out.println(Arrays.toString(clonned));
+		return timeElapsed;
+	}
+	
+	
+	//Create copy of initial array to prevent mutation
+	public static int[] copyArr(int[] arr) {
+		return Arrays.copyOf(arr, arr.length);
+	}
+	
+	//Bubble sort
 	public static void bubbleSort(int[] arr) {
 		int n = arr.length;
         boolean swapped;
@@ -37,9 +58,14 @@ class CTA {
                     swapped = true;
                 }
             }
-            if (!swapped)
+            if (!swapped) {
                 break;
+              }
         }
+	}
+	
+	public static void selectionSort(int[] arr) {
+		
 	}
 	
 	public static int[] randomNumbersArrayGenerator(int min, int max, int arrLength) {
