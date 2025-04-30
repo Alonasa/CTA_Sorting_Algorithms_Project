@@ -15,19 +15,29 @@ class CTA {
 		//, "Quick Sort", "Counting Sort"
         String[] algos = {"Bubble Sort", "Selection Sort", "Insertion Sort"};
         
-        //Generate array of random integers to perform algorithm
-        
+      
         double[][] results = new double[algos.length][sizes.length];
         
         
+        //Call benchmark on each element of the sizes
         for(int i = 0; i < algos.length; i++) {
-        	System.out.println(algos[i]);
         	for(int j = 0; j < sizes.length; j++) {
+        		//Generate array of random integers to perform algorithm
         		int [] array = randomNumbersArrayGenerator(-(sizes[j]), sizes[j], sizes[j]);
+        		
+        		//Save result of algorithm benchmark in the element of array
         		results[i][j] = algorithmBenchmark(array, algos[i]);    		
         	}
         }
         
+        //Print header
+        System.out.printf("%-16s", "Size");
+        for (int size : sizes) {
+        	System.out.printf("%10d", size);
+        }
+        System.out.println();
+        
+        //Print results of algorithm performance on the benchmark test 
         for (int al = 0; al < algos.length; al++) {
             System.out.printf("%-16s", algos[al]);
         	for (int si = 0; si < sizes.length; si++) {
@@ -40,7 +50,6 @@ class CTA {
 	}
 	
 	
-	
 	//Algorithm benchmarking, switch between algorithms and count time of the execution
 	public static double algorithmBenchmark(int[] arr, String algorithm) {
 		int[] clonned = copyArr(arr);
@@ -51,13 +60,6 @@ class CTA {
 		}
 		long endTime = System.nanoTime();
 		double timeElapsed = (endTime - startTime) / 1000000.0;
-		
-		
-		System.out.println(Arrays.toString(clonned));
-
-
-		System.out.println("39 " + Arrays.toString(arr));
-
 		return timeElapsed;
 	}
 	
