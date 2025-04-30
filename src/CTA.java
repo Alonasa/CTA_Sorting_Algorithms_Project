@@ -11,30 +11,53 @@ import java.util.Random;
 class CTA {
 	public static void main (String[] args) {
 		//Lets define initial data for expecting output. 10 sizes and sorting algorithms names
-		int[] sizes = {10, 100, 250, 1000, 2500, 3500, 5000, 7000, 10000, 20000};
-        String[] algos = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Quick Sort", "Counting Sort"};
+		int[] sizes = {10, 100, 250, 1000, 2000, 2500, 2000, 5000, 7000, 10000};
+		//, "Quick Sort", "Counting Sort"
+        String[] algos = {"Bubble Sort", "Selection Sort", "Insertion Sort"};
         
         //Generate array of random integers to perform algorithm
-        int [] array = randomNumbersArrayGenerator(-(sizes[sizes.length - 1]), sizes[sizes.length - 1], sizes[7]);
         
-        System.out.println(Arrays.toString(array));
-        System.out.println(algorithmBenchmark(array, "Bubble Sort"));
+        double[][] results = new double[algos.length][sizes.length];
+        
+        
+        for(int i = 0; i < algos.length; i++) {
+        	System.out.println(algos[i]);
+        	for(int j = 0; j < sizes.length; j++) {
+        		int [] array = randomNumbersArrayGenerator(-(sizes[j]), sizes[j], sizes[j]);
+        		results[i][j] = algorithmBenchmark(array, algos[i]);    		
+        	}
+        }
+        
+        for (int al = 0; al < algos.length; al++) {
+            System.out.printf("%-16s", algos[al]);
+        	for (int si = 0; si < sizes.length; si++) {
+        		System.out.printf("%10.3f", results[al][si]);
+        	}
+        	System.out.println();
+        }
        
-		System.out.println("Hello Algorithms");
+        	
 	}
 	
 	
 	
-	
+	//Algorithm benchmarking, switch between algorithms and count time of the execution
 	public static double algorithmBenchmark(int[] arr, String algorithm) {
 		int[] clonned = copyArr(arr);
 		long startTime = System.nanoTime();
 		switch(algorithm) {
 			case "Bubble Sort" -> bubbleSort(clonned);
+			case "Insertion Sort" -> insertionSort(clonned);
 		}
 		long endTime = System.nanoTime();
 		double timeElapsed = (endTime - startTime) / 1000000.0;
+		
+		
 		System.out.println(Arrays.toString(clonned));
+
+
+		System.out.println("39 " + Arrays.toString(arr));
+
 		return timeElapsed;
 	}
 	
@@ -66,6 +89,20 @@ class CTA {
 	
 	public static void selectionSort(int[] arr) {
 		
+	}
+	
+	public static void insertionSort(int[] arr) {
+		for (int i = 1; i < arr.length; i++) {
+			int key = arr[i];
+			int j = i - 1;
+			
+			while (j >= 0 && key < arr[j]) {
+				arr[j + 1] = arr[j];
+				j--;
+			}
+			
+			arr[j + 1] = key;
+		}
 	}
 	
 	public static int[] randomNumbersArrayGenerator(int min, int max, int arrLength) {
