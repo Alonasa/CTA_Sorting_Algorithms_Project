@@ -12,25 +12,27 @@ class CTA {
 	public static void main (String[] args) {
 		//Lets define initial data for expecting output. 10 sizes and sorting algorithms names
 		int[] sizes = {100, 250, 500, 750, 1000, 1250, 2500, 3750, 5000, 6250, 7500, 8750, 10000};
-		//, "Quick Sort", "Counting Sort"
-        String[] algos = {"Bubble Sort", "Selection Sort", "Insertion Sort"};
+		//, "Counting Sort"  
+        String[] algos = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Quick Sort"};
         
-        int repetition = 10;
+        
         double[][] results = new double[algos.length][sizes.length];
         
         //Call benchmark on each element of the sizes
         for(int i = 0; i < algos.length; i++) {
         	for(int j = 0; j < sizes.length; j++) {
         		double sum = 0;
+        		int repetitions = 10;
         		
-        		for (int n = 0; n < repetition; n++) {
+        		//Run algorithm for each of sizes n times
+        		for (int n = 0; n < repetitions; n++) {
         			//Generate array of random integers to perform algorithm
             		int [] array = randomNumbersArrayGenerator(-(sizes[j]), sizes[j], sizes[j]);
             		sum += algorithmBenchmark(array, algos[i]);
         		}
         		
         		//Save result of 10 repetition of algorithm benchmark in the element of array
-        		results[i][j] = sum / repetition;    		
+        		results[i][j] = sum / repetitions;    		
         	}
         }
         
@@ -61,15 +63,12 @@ class CTA {
 		//Start time execution counter
 		long startTime = System.nanoTime();
 		switch(algorithm) {
-			case "Bubble Sort":
-				bubbleSort(clonned);
-				break;
-			case "Insertion Sort":
-				insertionSort(clonned);
-				break;
-			case "Selection Sort":
-				selectionSort(clonned);
-				break;
+			case "Bubble Sort" -> bubbleSort(clonned);
+				
+			case "Insertion Sort" -> insertionSort(clonned);
+			
+			case "Selection Sort" -> selectionSort(clonned);
+			case "Quick Sort" -> quickSort(clonned, 0, clonned.length - 1);
 		}
 		long endTime = System.nanoTime();
 		double timeElapsed = (endTime - startTime) / 1000000.0;
@@ -130,6 +129,34 @@ class CTA {
 		}
 	}
 	
+	
+	public static void quickSort(int[] arr, int min, int max) {
+		if(min < max) {
+			int iteration = partition(arr, min, max);
+			quickSort(arr, min, iteration - 1);
+            quickSort(arr, iteration + 1, max);
+		}
+	}
+	
+	
+	public static int partition(int[] arr, int min, int max) {
+		int pivot = arr[max];
+		int j = min - 1;
+		
+		for (int i = min; i < max; i++) {
+			if(arr[i] < pivot) {
+				j++;
+				int temp = arr[i];
+				arr[j] = arr[i];
+				arr[i] = temp;
+			}
+		}
+		
+		int temp = arr[j + 1];
+        arr[j + 1] = arr[max];
+        arr[max] = temp;
+        return j + 1;
+	}
 	
 	public static int[] randomNumbersArrayGenerator(int min, int max, int arrLength) {
 		// Generate array of random integers in range min-max
