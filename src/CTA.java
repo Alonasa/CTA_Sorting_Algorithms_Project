@@ -11,22 +11,26 @@ import java.util.Random;
 class CTA {
 	public static void main (String[] args) {
 		//Lets define initial data for expecting output. 10 sizes and sorting algorithms names
-		int[] sizes = {10, 100, 250, 1000, 2000, 2500, 2000, 5000, 7000, 10000};
+		int[] sizes = {100, 250, 500, 750, 1000, 1250, 2500, 3750, 5000, 6250, 7500, 8750, 10000};
 		//, "Quick Sort", "Counting Sort"
         String[] algos = {"Bubble Sort", "Selection Sort", "Insertion Sort"};
         
-      
+        int repetition = 10;
         double[][] results = new double[algos.length][sizes.length];
-        
         
         //Call benchmark on each element of the sizes
         for(int i = 0; i < algos.length; i++) {
         	for(int j = 0; j < sizes.length; j++) {
-        		//Generate array of random integers to perform algorithm
-        		int [] array = randomNumbersArrayGenerator(-(sizes[j]), sizes[j], sizes[j]);
+        		double sum = 0;
         		
-        		//Save result of algorithm benchmark in the element of array
-        		results[i][j] = algorithmBenchmark(array, algos[i]);    		
+        		for (int n = 0; n < repetition; n++) {
+        			//Generate array of random integers to perform algorithm
+            		int [] array = randomNumbersArrayGenerator(-(sizes[j]), sizes[j], sizes[j]);
+            		sum += algorithmBenchmark(array, algos[i]);
+        		}
+        		
+        		//Save result of 10 repetition of algorithm benchmark in the element of array
+        		results[i][j] = sum / repetition;    		
         	}
         }
         
@@ -52,24 +56,28 @@ class CTA {
 	
 	//Algorithm benchmarking, switch between algorithms and count time of the execution
 	public static double algorithmBenchmark(int[] arr, String algorithm) {
-		int[] clonned = copyArr(arr);
+		//Create copy of initial array to prevent mutation
+		int[] clonned = Arrays.copyOf(arr, arr.length);
+		//Start time execution counter
 		long startTime = System.nanoTime();
 		switch(algorithm) {
-			case "Bubble Sort" -> bubbleSort(clonned);
-			case "Insertion Sort" -> insertionSort(clonned);
+			case "Bubble Sort":
+				bubbleSort(clonned);
+				break;
+			case "Insertion Sort":
+				insertionSort(clonned);
+				break;
+			case "Selection Sort":
+				selectionSort(clonned);
+				break;
 		}
 		long endTime = System.nanoTime();
 		double timeElapsed = (endTime - startTime) / 1000000.0;
 		return timeElapsed;
 	}
 	
-	
-	//Create copy of initial array to prevent mutation
-	public static int[] copyArr(int[] arr) {
-		return Arrays.copyOf(arr, arr.length);
-	}
-	
 	//Bubble sort
+	
 	public static void bubbleSort(int[] arr) {
 		int n = arr.length;
         boolean swapped;
@@ -89,9 +97,24 @@ class CTA {
         }
 	}
 	
+	
+	
 	public static void selectionSort(int[] arr) {
-		
+		int n = arr.length;
+		for (int i = 0; i < n - 1; i++) {
+			int minIdx = i;
+			for (int j = i + 1; j < n; j++) {
+				if(arr[minIdx] > arr[j]) {
+					minIdx = j;
+				}
+			}
+			
+			int swap = arr[minIdx];
+			arr[minIdx] = arr[i];
+			arr[i] = swap;
+		}
 	}
+	
 	
 	public static void insertionSort(int[] arr) {
 		for (int i = 1; i < arr.length; i++) {
@@ -106,6 +129,7 @@ class CTA {
 			arr[j + 1] = key;
 		}
 	}
+	
 	
 	public static int[] randomNumbersArrayGenerator(int min, int max, int arrLength) {
 		// Generate array of random integers in range min-max
