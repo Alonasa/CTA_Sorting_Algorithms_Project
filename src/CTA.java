@@ -12,8 +12,7 @@ class CTA {
 	public static void main (String[] args) {
 		//Lets define initial data for expecting output. 10 sizes and sorting algorithms names
 		int[] sizes = {100, 250, 500, 750, 1000, 1250, 2500, 3750, 5000, 6250, 7500, 8750, 10000};
-		//, "Counting Sort"  
-        String[] algos = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Quick Sort"};
+        String[] algos = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Quick Sort", "Counting Sort"};
         
         
         double[][] results = new double[algos.length][sizes.length];
@@ -69,6 +68,7 @@ class CTA {
 			
 			case "Selection Sort" -> selectionSort(clonned);
 			case "Quick Sort" -> quickSort(clonned, 0, clonned.length - 1);
+			case "Counting Sort" -> countingSort(clonned);
 		}
 		long endTime = System.nanoTime();
 		double timeElapsed = (endTime - startTime) / 1000000.0;
@@ -139,6 +139,38 @@ class CTA {
 	}
 	
 	
+	public static void countingSort(int[] arr) {
+		if (arr.length == 0) return;
+
+	    // 1. Find min and max to determine the range
+	    int min = arr[0];
+	    int max = arr[0];
+	    for (int value : arr) {
+	        if (value < min) min = value;
+	        if (value > max) max = value;
+	    }
+
+	    // 2. Create count array of the needed size
+	    int range = max - min + 1;
+	    int[] count = new int[range];
+
+	    // 3. Count occurrences, shifting by -min so negative values work
+	    for (int value : arr) {
+	        count[value - min]++;
+	    }
+
+	    // 4. Write sorted values back into the array
+	    int idx = 0;
+	    for (int i = 0; i < range; i++) {
+	        while (count[i] > 0) {
+	            arr[idx++] = i + min;
+	            count[i]--;
+	        }
+	    }
+	}
+	
+	
+	//Partitions for the quick sort algorithm, as quick sort assume to call it recursively
 	public static int partition(int[] arr, int min, int max) {
 		int pivot = arr[max];
 		int j = min - 1;
