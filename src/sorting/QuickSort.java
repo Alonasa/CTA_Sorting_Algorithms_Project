@@ -1,7 +1,12 @@
 package sorting;
 
+/*
+ * Quick sort
+ * It's fast algorithm divide-and-concer algorithm that picks "pivot" element,
+ * and partitions the array on elements less than pivot and greater than pivot and recursively sorts the partitions  
+ */
+
 public class QuickSort {
-	// Quick sort
 	public void quickSort(int[] arr, int min, int max) {
 		/*
 		 * Recursively call quickSort function till condition become false one part

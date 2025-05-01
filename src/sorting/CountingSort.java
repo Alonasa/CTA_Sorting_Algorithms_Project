@@ -1,6 +1,9 @@
 package sorting;
 
-//Counting sort
+/*Counting sort
+ * Algorithm based on non-comperative sorting approach, its counts number occurrences of each unique value in the input
+ * and then put them in its position
+*/
 
 public class CountingSort {
 	public void countingSort(int[] arr) {
@@ -25,8 +28,8 @@ public class CountingSort {
 		int[] count = new int[range];
 
 		/*
-		 * 3.Initially this algorithm work only with positive numbers, so for make it //
-		 * work with negative // we need shifting by (-min). Lets count occurrences of
+		 * 3.Initially this algorithm work only with positive numbers, so for make it
+		 * work with negative we need shifting by (-min). Lets count occurrences of
 		 * the values
 		 */
 		for (int value : arr) {

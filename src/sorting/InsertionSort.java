@@ -1,6 +1,9 @@
 package sorting;
 
-/*Insertion sort
+/*
+ * Insertion sort
+ * Algorithm based on iteration over previous and next element and comparing their
+ * values, in case if element with smaller index bigger than current index we swap them
 */
 
 public class InsertionSort {

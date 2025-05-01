@@ -1,7 +1,10 @@
 package sorting;
 
-/*Selection sort
- * 
+/*
+ * Selection sort
+ * Algorithm based on 2 loops one outer one inner, it's repetitively iterate over elements 
+ * and compare if element in outer loop bigger than in inner, if so then its save its index
+ * and swap elements positions
  */
 
 public class SelectionSort {
