@@ -1,15 +1,18 @@
 package sorting;
+
 import java.util.Random;
 
 /*Sorting Algorithms
-1. Bubble Sort
-2. Selection Sort
-3. Insertion Sort
-4. An efficient comparison-based sort as Quick Sort
-5. A non-comparison sort as Counting Sort
+*1. Bubble Sort
+*2. Selection Sort
+*3. Insertion Sort
+*4. An efficient comparison-based sort as Quick Sort
+*5. A non-comparison sort as Counting Sort
+*Source for printing: https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/
+*Java-print-table-format-printf-chart-console-scanner-println-line
 */
 
-class SortingBenchmark {	
+class SortingBenchmark {
 	public static void main(String[] args) {
 		/*
 		 * Lets define initial data for expecting output. 10 sizes and sorting
@@ -19,7 +22,6 @@ class SortingBenchmark {
 		String[] algos = { "Bubble Sort", "Selection Sort", "Insertion Sort", "Quick Sort", "Counting Sort" };
 		double[][] results = new double[algos.length][sizes.length];
 		final Benchmark benchmark = new Benchmark();
-		
 
 		// Call benchmark on each element of the sizes
 		for (int i = 0; i < algos.length; i++) {
@@ -56,9 +58,12 @@ class SortingBenchmark {
 		}
 	}
 
-	
 	private static int[] randomNumbersArrayGenerator(int min, int max, int arrLength) {
-		// Generate array of random integers in range min-max
+		/*
+		 * Generate array of random integers in range min-max Source:
+		 * https://stackoverflow.com/questions/25768435/how-to-fill-an-array-with-random
+		 * -numbers-from-0-to-99-using-the-class-math
+		 */
 		Random rand = new Random();
 		int[] arrayOfRandom = new int[arrLength];
 
