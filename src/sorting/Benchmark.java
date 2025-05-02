@@ -4,6 +4,7 @@ import java.util.Arrays;
 /*
  * Algorithm benchmarking, switch between algorithms and count time of the
  * execution
+ * Source: https://vlegalwaymayo.atu.ie/mod/url/view.php?id=1136860
  */
 
 public class Benchmark {

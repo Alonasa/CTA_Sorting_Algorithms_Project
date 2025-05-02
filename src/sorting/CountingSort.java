@@ -3,6 +3,8 @@ package sorting;
 /*Counting sort
  * Algorithm based on non-comperative sorting approach, its counts number occurrences of each unique value in the input
  * and then put them in its position
+ * Source: https://www.geeksforgeeks.org/counting-sort/
+ * Source: https://stackoverflow.com/questions/40476521/using-counting-sort-with-negative-values-descending-order
 */
 
 public class CountingSort {

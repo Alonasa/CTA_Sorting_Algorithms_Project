@@ -4,6 +4,7 @@ package sorting;
  * Insertion sort
  * Algorithm based on iteration over previous and next element and comparing their
  * values, in case if element with smaller index bigger than current index we swap them
+ * Source: https://www.geeksforgeeks.org/insertion-sort-algorithm/
 */
 
 public class InsertionSort {

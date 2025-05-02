@@ -5,6 +5,7 @@ package sorting;
  * Algorithm based on 2 loops one outer one inner, it's repetitively iterate over elements 
  * and compare if element in outer loop bigger than in inner, if so then its save its index
  * and swap elements positions
+ * Source: https://www.geeksforgeeks.org/selection-sort-algorithm-2/
  */
 
 public class SelectionSort {

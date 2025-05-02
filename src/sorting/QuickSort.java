@@ -2,8 +2,10 @@ package sorting;
 
 /*
  * Quick sort
+ * Source - https://www.geeksforgeeks.org/java-program-for-quicksort/
  * It's fast algorithm divide-and-concer algorithm that picks "pivot" element,
  * and partitions the array on elements less than pivot and greater than pivot and recursively sorts the partitions  
+ * Source: https://www.geeksforgeeks.org/quick-sort-algorithm/
  */
 
 public class QuickSort {
