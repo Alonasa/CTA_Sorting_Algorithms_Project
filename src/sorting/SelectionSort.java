@@ -1,14 +1,25 @@
 package sorting;
 
-/*
+/**
  * Selection sort
+ * It's a comparison based in-pace sorting algorithm.
  * Algorithm based on 2 loops one outer one inner, it's repetitively iterate over elements 
  * and compare if element in outer loop bigger than in inner, if so then its save its index
- * and swap elements positions
+ * and swap elements positions and continues until entire array is sorted.
  * Source: https://www.geeksforgeeks.org/selection-sort-algorithm-2/
  */
 
 public class SelectionSort {
+	/**
+     * Sorts the given array in ascending order using the Selection Sort algorithm.
+     * The sorting is done in-place, modifying the input array.
+     * Time Complexity: O(n^2) in the best, average, and worst cases as here we use two loops.
+     * Auxiliary Space: O(1) (in-place sorting).
+     * Stability: Not stable.
+     *
+     * @param arr the array of integers to be sorted
+     */
+	
 	public void selectionSort(int[] arr) {
 		int n = arr.length;
 		// 1. define outer loop

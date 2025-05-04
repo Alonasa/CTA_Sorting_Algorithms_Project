@@ -1,19 +1,30 @@
 package sorting;
 
-import java.util.Arrays;
-import java.util.Random;
-
-/*Sorting Algorithms
-*1. Bubble Sort
-*2. Selection Sort
-*3. Insertion Sort
-*4. An efficient comparison-based sort as Quick Sort
-*5. A non-comparison sort as Counting Sort
-*Source for printing: https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/
-*Java-print-table-format-printf-chart-console-scanner-println-line
-*/
+/**
+ * Benchmarking and comparing the performance of various sorting algorithms.
+ * Sorting Algorithms:
+ * <ul> 
+ * <li>1. Bubble Sort</li>
+ * <li>2. Selection Sort</li>
+ * <li>3. Insertion Sort</li>
+ * <li>4. An efficient comparison-based sort as Quick Sort</li>
+ * <li>5. A non-comparison sort as Counting Sort</li>
+ * </ul>
+ * Source for printing:
+ * https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/
+ * Java-print-table-format-printf-chart-console-scanner-println-line
+ */
 
 class SortingBenchmark {
+	/**
+	 * Main method to run the sorting benchmark. For each sorting algorithm and
+	 * input size, this method runs the algorithm multiple times on randomly
+	 * generated data, averages the timing results, and prints a comparison table to
+	 * the console.
+	 *
+	 * @param args not used
+	 */
+
 	public static void main(String[] args) {
 		/*
 		 * Lets define initial data for expecting output. 10 sizes and sorting
@@ -42,7 +53,6 @@ class SortingBenchmark {
 
 			}
 		}
-
 
 		// Print header
 		System.out.printf("%-16s", "Size");

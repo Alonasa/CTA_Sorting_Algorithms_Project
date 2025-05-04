@@ -1,14 +1,30 @@
 package sorting;
 
-/*
+/**
  * Quick sort
- * Source - https://www.geeksforgeeks.org/java-program-for-quicksort/
  * It's fast algorithm divide-and-concer algorithm that picks "pivot" element,
- * and partitions the array on elements less than pivot and greater than pivot and recursively sorts the partitions  
+ * and partitions the array on elements less than pivot and greater than pivot and recursively sorts the partitions 
+ * Source - https://www.geeksforgeeks.org/java-program-for-quicksort/ 
  * Source: https://www.geeksforgeeks.org/quick-sort-algorithm/
  */
 
 public class QuickSort {
+	  /**
+     * Sorts the specified array using the Quick Sort algorithm.
+     * This method sorts the subarray from index min to max (inclusive).
+     * It modifies the array in place.
+     * Time Complexity:
+     * Best - Average Case: O(n log n)
+ 	 * Worst Case: O(n ^ 2) (e.g., when the array is already
+ 	 * sorted and the smallest/largest element is always picked as pivot)
+     * Auxiliary Space: O(n).
+     * Stability: Not stable.
+     * 
+     * @param arr the array to be sorted
+     * @param min the starting index (inclusive)
+     * @param max the ending index (inclusive)
+     */
+	
 	public void quickSort(int[] arr, int min, int max) {
 		/*
 		 * Recursively call quickSort function till condition become false one part

@@ -7,9 +7,9 @@ public class DataGenerator {
 	 * For each size in 'sizes' and for each repetition, generates an array of random ints
 	 * in the range [-size, size], with 'size' elements.
 	 *
-	 * @param sizes       Array of sizes for each test case.
-	 * @param repetitions Number of random arrays to generate per size.
-	 * @return            3D array: testData[sizeIndex][repetitionIndex][arrayElements].
+	 * @param sizes Array of sizes for each test case.
+	 * @param  repetitions Number of random arrays to generate per size.
+	 * @return 3D array: testData[sizeIndex][repetitionIndex][arrayElements].
 	 */
 	
 	public int[][][] testData(int[] sizes, int repetitions){

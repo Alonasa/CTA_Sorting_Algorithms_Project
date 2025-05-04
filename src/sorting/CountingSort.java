@@ -1,6 +1,6 @@
 package sorting;
 
-/*Counting sort
+/**Counting sort
  * Algorithm based on non-comperative sorting approach, its counts number occurrences of each unique value in the input
  * and then put them in its position
  * Source: https://www.geeksforgeeks.org/counting-sort/
@@ -8,6 +8,20 @@ package sorting;
 */
 
 public class CountingSort {
+	/**
+     * Sorts the given integer array in ascending order using the Counting Sort algorithm.
+     * This method modifies the input array in place. It works for arrays containing both
+     * positive and negative integers by shifting the count array according to the minimum value.
+     * The algorithm is stable and runs in O(n + k) time, where n is the number of elements in
+     * the array and k is the range of the input values.
+     * Source: https://en.wikipedia.org/wiki/Counting_sort
+     * Time Complexity: O(n + k) in all cases
+     * Auxiliary Space: O(n + k).
+     * Stability: Stable.
+     *
+     * @param arr the array of integers to be sorted.
+     *            If the array is empty, the method does nothing.
+     */
 	public void countingSort(int[] arr) {
 		if (arr.length == 0)
 			return;
