@@ -1,5 +1,6 @@
 package sorting;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /*Sorting Algorithms
@@ -20,26 +21,28 @@ class SortingBenchmark {
 		 */
 		int[] sizes = { 100, 250, 500, 750, 1000, 1250, 2500, 3750, 5000, 6250, 7500, 8750, 10000 };
 		String[] algos = { "Bubble Sort", "Selection Sort", "Insertion Sort", "Quick Sort", "Counting Sort" };
+		int repetitions = 10;
 		double[][] results = new double[algos.length][sizes.length];
 		final Benchmark benchmark = new Benchmark();
+		final DataGenerator data = new DataGenerator();
+		int[][][] arraysForSorting = data.testData(sizes, repetitions);
 
 		// Call benchmark on each element of the sizes
 		for (int i = 0; i < algos.length; i++) {
 			for (int j = 0; j < sizes.length; j++) {
 				double sum = 0;
-				int repetitions = 10;
 
 				// Run algorithm for each of sizes n times
 				for (int n = 0; n < repetitions; n++) {
-					// Generate array of random integers to perform algorithm
-					int[] array = randomNumbersArrayGenerator(-(sizes[j]), sizes[j], sizes[j]);
-					sum += benchmark.algorithmsBenchmark(array, algos[i]);
+					sum += benchmark.algorithmsBenchmark(arraysForSorting[j][n], algos[i]);
 				}
 
 				// Save result of 10 repetition of algorithm benchmark in the element of array
 				results[i][j] = sum / repetitions;
+
 			}
 		}
+
 
 		// Print header
 		System.out.printf("%-16s", "Size");
@@ -56,21 +59,5 @@ class SortingBenchmark {
 			}
 			System.out.println();
 		}
-	}
-
-	private static int[] randomNumbersArrayGenerator(int min, int max, int arrLength) {
-		/*
-		 * Generate array of random integers in range min-max Source:
-		 * https://stackoverflow.com/questions/25768435/how-to-fill-an-array-with-random
-		 * -numbers-from-0-to-99-using-the-class-math
-		 */
-		Random rand = new Random();
-		int[] arrayOfRandom = new int[arrLength];
-
-		for (int i = 0; i < arrLength; i++) {
-			arrayOfRandom[i] = rand.nextInt(min, (max + 1));
-		}
-
-		return arrayOfRandom;
 	}
 }
